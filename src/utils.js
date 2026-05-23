@@ -180,14 +180,19 @@ function runCpufreqctl(pkexecNeeded, backend, params, cb) {
         }
 
         let exitCode = proc.get_exit_status();
+        stdout = stdout || "";
 
         let response;
         if (exitCode === CPUFREQCTL_SUCCESS) {
-            try {
-                response = JSON.parse(stdout);
-            } catch (e) {
-                console.error(e);
-                console.log(stdout);
+            if (stdout.trim() === "") {
+                response = null;
+            } else {
+                try {
+                    response = JSON.parse(stdout.trim());
+                } catch (e) {
+                    console.error(e);
+                    console.log(stdout);
+                }
             }
         } else {
             response = stdout;

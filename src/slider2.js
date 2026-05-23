@@ -57,11 +57,11 @@ export const Slider2 = GObject.registerClass({
         const handleY = height / 2;
 
         let color = themeNode.get_foreground_color();
-        Clutter.cairo_set_source_color(cr, color);
+        cr.setSourceColor(color);
         cr.arc(handleX, handleY, handleRadius, 0, 2 * Math.PI);
         cr.fillPreserve();
         if (hasHandleColor && handleBorderWidth) {
-            Clutter.cairo_set_source_color(cr, handleBorderColor);
+            cr.setSourceColor(handleBorderColor);
             cr.setLineWidth(handleBorderWidth);
             cr.stroke();
         }
@@ -191,13 +191,13 @@ export const Slider2 = GObject.registerClass({
     }
 
     vfunc_key_press_event(keyPressEvent) {
-        let key = keyPressEvent.keyval;
+        let key = keyPressEvent.get_key_symbol();
         if (key === Clutter.KEY_Right || key === Clutter.KEY_Left) {
             let delta = this._getMinimumIncrement();
             if (key === Clutter.KEY_Left) {
                 delta *= -1;
             }
-            this.value = this.value = Math.min(Math.max(this.limit_minimum, this._value + delta), this.limit_maximum);
+            this.value = Math.min(Math.max(this.limit_minimum, this._value + delta), this.limit_maximum);
             return Clutter.EVENT_STOP;
         }
         return super.vfunc_key_press_event(keyPressEvent);

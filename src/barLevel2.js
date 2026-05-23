@@ -9,7 +9,6 @@
  */
 
 import Atk from "gi://Atk";
-import Clutter from "gi://Clutter";
 import GObject from "gi://GObject";
 import St from "gi://St";
 
@@ -219,9 +218,9 @@ export const BarLevel2 = GObject.registerClass({
         cr.lineTo(endX, barLevelBottom);
         cr.lineTo(endX, barLevelTop);
         cr.lineTo(startLimitMax, barLevelTop);
-        Clutter.cairo_set_source_color(cr, barLevelColor);
+        cr.setSourceColor(barLevelColor);
         cr.fillPreserve();
-        Clutter.cairo_set_source_color(cr, barLevelBorderColor);
+        cr.setSourceColor(barLevelBorderColor);
         cr.setLineWidth(barLevelBorderWidth);
         cr.stroke();
 
@@ -234,10 +233,10 @@ export const BarLevel2 = GObject.registerClass({
             cr.lineTo(bx, barLevelBottom);
             cr.lineTo(barLevelBorderRadius + barLevelBorderWidth, barLevelBottom);
             if (this._value > 0) {
-                Clutter.cairo_set_source_color(cr, deadBarColor);
+                cr.setSourceColor(deadBarColor);
             }
             cr.fillPreserve();
-            Clutter.cairo_set_source_color(cr, deadBarBorderColor);
+            cr.setSourceColor(deadBarBorderColor);
             cr.setLineWidth(barLevelBorderWidth);
             cr.stroke();
         }
@@ -254,10 +253,10 @@ export const BarLevel2 = GObject.registerClass({
         cr.lineTo(x, barLevelBottom);
         cr.lineTo(startX, barLevelBottom);
         if (this._value > 0) {
-            Clutter.cairo_set_source_color(cr, barLevelActiveColor);
+            cr.setSourceColor(barLevelActiveColor);
         }
         cr.fillPreserve();
-        Clutter.cairo_set_source_color(cr, barLevelActiveBorderColor);
+        cr.setSourceColor(barLevelActiveBorderColor);
         cr.setLineWidth(barLevelBorderWidth);
         cr.stroke();
 
@@ -269,9 +268,9 @@ export const BarLevel2 = GObject.registerClass({
             cr.lineTo(endX, barLevelBottom);
             cr.lineTo(x, barLevelBottom);
             cr.lineTo(x, barLevelTop);
-            Clutter.cairo_set_source_color(cr, barLevelOverdriveColor);
+            cr.setSourceColor(barLevelOverdriveColor);
             cr.fillPreserve();
-            Clutter.cairo_set_source_color(cr, barLevelOverdriveBorderColor);
+            cr.setSourceColor(barLevelOverdriveBorderColor);
             cr.setLineWidth(barLevelBorderWidth);
             cr.stroke();
         }
@@ -279,9 +278,9 @@ export const BarLevel2 = GObject.registerClass({
         /* end progress bar arc */
         if (this._value > 0) {
             if (this._value <= this._overdriveStart) {
-                Clutter.cairo_set_source_color(cr, barLevelActiveColor);
+                cr.setSourceColor(barLevelActiveColor);
             } else {
-                Clutter.cairo_set_source_color(cr, barLevelOverdriveColor);
+                cr.setSourceColor(barLevelOverdriveColor);
             }
             cr.arc(endX, height / 2, barLevelBorderRadius, TAU * (3 / 4), TAU * (1 / 4));
             cr.lineTo(Math.floor(endX), barLevelBottom);
@@ -299,9 +298,9 @@ export const BarLevel2 = GObject.registerClass({
             cr.lineTo(bx, barLevelBottom);
             cr.lineTo(bx, barLevelTop);
             cr.lineTo(width - barLevelBorderRadius - barLevelBorderWidth, barLevelTop);
-            Clutter.cairo_set_source_color(cr, deadBarColor);
+            cr.setSourceColor(deadBarColor);
             cr.fillPreserve();
-            Clutter.cairo_set_source_color(cr, deadBarBorderColor);
+            cr.setSourceColor(deadBarBorderColor);
             cr.setLineWidth(barLevelBorderWidth);
             cr.stroke();
         }
@@ -314,9 +313,9 @@ export const BarLevel2 = GObject.registerClass({
             cr.lineTo(overdriveSeparatorX - overdriveSeparatorWidth / 2, barLevelBottom);
             cr.lineTo(overdriveSeparatorX - overdriveSeparatorWidth / 2, barLevelTop);
             if (this._value <= this._overdriveStart) {
-                Clutter.cairo_set_source_color(cr, fgColor);
+                cr.setSourceColor(fgColor);
             } else {
-                Clutter.cairo_set_source_color(cr, barLevelColor);
+                cr.setSourceColor(barLevelColor);
             }
             cr.fill();
         }
@@ -333,9 +332,9 @@ export const BarLevel2 = GObject.registerClass({
             cr.lineTo(bx - limit_sep_width, barLevelBottom + limit_sep_height);
             cr.lineTo(bx - limit_sep_width, barLevelTop - limit_sep_height);
             cr.lineTo(bx, barLevelTop - limit_sep_height);
-            Clutter.cairo_set_source_color(cr, barLevelActiveColor);
+            cr.setSourceColor(barLevelActiveColor);
             cr.fillPreserve();
-            Clutter.cairo_set_source_color(cr, barLevelActiveBorderColor);
+            cr.setSourceColor(barLevelActiveBorderColor);
             cr.setLineWidth(barLevelBorderWidth);
             cr.stroke();
         }
@@ -349,9 +348,9 @@ export const BarLevel2 = GObject.registerClass({
             cr.lineTo(bx + limit_sep_width, barLevelBottom + limit_sep_height);
             cr.lineTo(bx + limit_sep_width, barLevelTop - limit_sep_height);
             cr.lineTo(bx, barLevelTop - limit_sep_height);
-            Clutter.cairo_set_source_color(cr, barLevelActiveColor);
+            cr.setSourceColor(barLevelActiveColor);
             cr.fillPreserve();
-            Clutter.cairo_set_source_color(cr, barLevelActiveBorderColor);
+            cr.setSourceColor(barLevelActiveBorderColor);
             cr.setLineWidth(barLevelBorderWidth);
             cr.stroke();
         }
