@@ -100,7 +100,11 @@ export class CPUFreqIndicator extends CPUFreqBaseIndicator {
     }
 
     enable() {
-        this.powerClient = new UPower.Client();
+        // NOTE: must use the GInitable constructor (UPower.Client.new()), not
+        // `new UPower.Client()`. The latter does not run up_client_initable_init(),
+        // leaving UpClient::priv NULL; finalizing such an object during garbage
+        // collection dereferences NULL in up_client_finalize() and kills the shell.
+        this.powerClient = UPower.Client.new();
         this.powerDevice = this.powerClient.get_display_device();
         this.powerState = this.powerDevice.state;
         this.powerConnectSignalId = this.powerDevice.connect("notify::state", this.onPowerChanged.bind(this));
